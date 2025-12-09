@@ -76,6 +76,6 @@ class TransactionController extends Controller
             $storeBalance->increment('balance', $transaction->grand_total);
         }
 
-        return redirect()->back()->with('success', 'Order received and funds released to seller.');
+        return redirect()->route('reviews.create', $transaction->id)->with('success', 'Order received! Please rate your products.');
     }
 }

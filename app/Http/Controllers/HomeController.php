@@ -20,7 +20,16 @@ class HomeController extends Controller
                     $q->where('slug', $categorySlug);
                 });
             })
-            ->latest()
+            ->when($request->sort_by, function ($query, $sortBy) {
+                if ($sortBy == 'price_asc') {
+                    return $query->orderBy('price', 'asc');
+                } elseif ($sortBy == 'price_desc') {
+                    return $query->orderBy('price', 'desc');
+                }
+                return $query->latest();
+            }, function ($query) {
+                return $query->latest();
+            })
             ->paginate(12);
             
         $categories = ProductCategory::all();
@@ -29,6 +38,7 @@ class HomeController extends Controller
 
     public function product(Product $product)
     {
+        $product->load(['reviews.user', 'store']);
         return view('home.product', compact('product'));
     }
 

@@ -18,13 +18,13 @@
         <div class="min-h-screen">
             <!-- Navigation -->
             @if (Route::has('login'))
-                <nav class="bg-white border-b border-gray-100">
+                <nav class="bg-black border-b border-gray-900">
                     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                         <div class="flex justify-between h-16">
                             <div class="flex">
                                 <div class="shrink-0 flex items-center">
-                                    <a href="{{ route('home') }}" class="text-xl font-bold text-gray-800">
-                                        E-Shop
+                                    <a href="{{ route('home') }}">
+                                        <x-application-logo class="text-2xl text-white" />
                                     </a>
                                 </div>
                             </div>
@@ -38,7 +38,7 @@
                                                 <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
                                             </svg>
                                         </div>
-                                        <input type="text" name="search" value="{{ request('search') }}" class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg leading-5 bg-gray-50 placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" placeholder="Search for products...">
+                                        <input type="text" name="search" value="{{ request('search') }}" class="block w-full pl-10 pr-3 py-2 border border-gray-700 rounded-lg leading-5 bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:placeholder-gray-300 focus:border-[#ff9900] focus:ring-[#ff9900] sm:text-sm" placeholder="Search for products...">
                                     </div>
                                 </form>
                             </div>
@@ -47,7 +47,7 @@
                              <div class="flex items-center space-x-4">
                                 @auth
                                     <!-- Cart Icon -->
-                                    <a href="{{ route('cart.index') }}" class="text-gray-600 hover:text-gray-900 relative">
+                                    <a href="{{ route('cart.index') }}" class="text-gray-300 hover:text-white relative">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                             <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
                                         </svg>
@@ -62,7 +62,7 @@
                                     <div class="hidden sm:flex sm:items-center sm:ms-6">
                                         <x-dropdown align="right" width="48">
                                             <x-slot name="trigger">
-                                                <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
+                                                <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-300 bg-black hover:text-white focus:outline-none transition ease-in-out duration-150">
                                                     <div class="flex items-center">
                                                         @if (Auth::user()->avatar)
                                                             <img src="{{ asset('storage/' . Auth::user()->avatar) }}" alt="{{ Auth::user()->name }}" class="h-8 w-8 rounded-full object-cover mr-2">
@@ -122,9 +122,9 @@
                                         </x-dropdown>
                                     </div>
                                 @else
-                                    <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
+                                    <a href="{{ route('login') }}" class="text-sm text-gray-300 hover:text-white underline">Log in</a>
                                     @if (Route::has('register'))
-                                        <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
+                                        <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-300 hover:text-white underline">Register</a>
                                     @endif
                                 @endauth
                             </div>
