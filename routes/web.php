@@ -15,9 +15,7 @@ Route::get('/checkout/{product:slug}', [HomeController::class, 'checkout'])->mid
 Route::post('/checkout/{product:slug}', [App\Http\Controllers\TransactionController::class, 'store'])->middleware(['auth'])->name('checkout.store');
 
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

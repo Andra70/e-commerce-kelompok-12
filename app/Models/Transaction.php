@@ -47,4 +47,17 @@ class Transaction extends Model
     {
         return $this->hasMany(ProductReview::class);
     }
+    public function isFullyReviewedBy(User $user)
+    {
+        foreach ($this->transactionDetails as $detail) {
+            $isReviewed = \App\Models\Review::where('user_id', $user->id)
+                ->where('product_id', $detail->product_id)
+                ->exists();
+            
+            if (!$isReviewed) {
+                return false;
+            }
+        }
+        return true;
+    }
 }

@@ -96,9 +96,7 @@
                                                         {{ __('Store Balance') }}
                                                     </x-dropdown-link>
                                                 @else
-                                                     <x-dropdown-link :href="route('dashboard')">
-                                                        {{ __('Dashboard') }}
-                                                    </x-dropdown-link>
+
                                                 @endif
 
                                                 <x-dropdown-link :href="route('orders.history')">

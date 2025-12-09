@@ -5,7 +5,7 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
+                    <a href="{{ route('home') }}">
                         <x-application-logo class="block text-2xl text-white" />
                     </a>
                 </div>
@@ -15,9 +15,7 @@
                     <x-nav-link :href="route('home')" :active="request()->routeIs('home')" class="text-gray-300 hover:text-white">
                         {{ __('Home') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" class="text-gray-300 hover:text-white">
-                        {{ __('Dashboard') }}
-                    </x-nav-link>
+
                     
                     @if(Auth::user()->isAdmin())
                         <x-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.dashboard')" class="text-gray-300 hover:text-white">
@@ -110,9 +108,7 @@
             <x-responsive-nav-link :href="route('home')" :active="request()->routeIs('home')" class="text-gray-300 hover:text-white hover:bg-gray-800">
                 {{ __('Home') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')" class="text-gray-300 hover:text-white hover:bg-gray-800">
-                {{ __('Dashboard') }}
-            </x-responsive-nav-link>
+
         </div>
 
         <!-- Responsive Settings Options -->

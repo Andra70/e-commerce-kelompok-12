@@ -34,9 +34,11 @@
                                                         </svg>
                                                         Completed
                                                     </div>
-                                                    <a href="{{ route('reviews.create', $transaction->id) }}" class="inline-flex items-center px-4 py-2 bg-[#ff9900] border border-transparent rounded-md font-semibold text-xs text-black uppercase tracking-widest hover:bg-orange-600 active:bg-orange-700 focus:outline-none focus:border-orange-900 focus:ring ring-orange-300 disabled:opacity-25 transition ease-in-out duration-150">
-                                                        Rate Products
-                                                    </a>
+                                                    @if(!$transaction->isFullyReviewedBy(auth()->user()))
+                                                        <a href="{{ route('reviews.create', $transaction->id) }}" class="inline-flex items-center px-4 py-2 bg-[#ff9900] border border-transparent rounded-md font-semibold text-xs text-black uppercase tracking-widest hover:bg-orange-600 active:bg-orange-700 focus:outline-none focus:border-orange-900 focus:ring ring-orange-300 disabled:opacity-25 transition ease-in-out duration-150">
+                                                            Rate Products
+                                                        </a>
+                                                    @endif
                                                 </div>
                                             @elseif($transaction->tracking_number)
                                                  <span class="bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full mb-1 inline-block">Shipped: {{ $transaction->tracking_number }}</span>
