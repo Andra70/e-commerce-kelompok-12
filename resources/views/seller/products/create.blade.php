@@ -11,14 +11,10 @@
                 <div class="p-6 text-gray-900">
                     <form method="POST" action="{{ route('seller.products.store') }}" enctype="multipart/form-data">
                         @csrf
-                        
-                        <!-- Name -->
                         <div class="mb-4">
                             <x-input-label for="name" :value="__('Product Name')" />
                             <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" required />
                         </div>
-                        
-                        <!-- Category -->
                         <div class="mb-4">
                             <x-input-label for="category_id" :value="__('Category')" />
                             <select id="category_id" name="category_id" class="block mt-1 w-full border-gray-300 rounded-md shadow-sm">
@@ -29,7 +25,6 @@
                             </select>
                         </div>
 
-                        <!-- Price & Stock -->
                         <div class="grid grid-cols-2 gap-4 mb-4">
                             <div>
                                 <x-input-label for="price" :value="__('Price (Rp)')" />
@@ -41,7 +36,6 @@
                             </div>
                         </div>
 
-                        <!-- Condition -->
                         <div class="mb-4">
                             <span class="block font-medium text-sm text-gray-700 mb-1">Condition</span>
                             <div class="flex items-center gap-4">
@@ -55,14 +49,10 @@
                                 </label>
                             </div>
                         </div>
-
-                        <!-- Description -->
                         <div class="mb-4">
                             <x-input-label for="description" :value="__('Description')" />
                             <textarea id="description" name="description" class="block mt-1 w-full border-gray-300 rounded-md shadow-sm" rows="4" required></textarea>
                         </div>
-
-                        <!-- Image -->
                         <div class="mb-4">
                              <x-input-label for="image" :value="__('Product Image')" />
                              <input id="image" type="file" name="image" class="block mt-1 w-full border border-gray-300 rounded-md cursor-pointer p-2 focus:outline-none" accept="image/*" required />

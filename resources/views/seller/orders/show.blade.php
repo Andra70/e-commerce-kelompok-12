@@ -11,7 +11,6 @@
             
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
-                    <!-- Top Status Bar -->
                     <div class="flex justify-between items-start border-b pb-6 mb-6">
                         <div>
                             <p class="text-sm text-gray-500">Order Date</p>
@@ -27,7 +26,6 @@
                     </div>
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-                        <!-- Buyer Info -->
                         <div>
                             <h3 class="font-semibold text-lg mb-4">Customer Information</h3>
                             <div class="bg-gray-50 p-4 rounded-lg">
@@ -36,7 +34,6 @@
                             </div>
                         </div>
 
-                        <!-- Shipping Info -->
                         <div>
                             <h3 class="font-semibold text-lg mb-4">Shipping Destination</h3>
                             <div class="bg-gray-50 p-4 rounded-lg">
@@ -47,7 +44,6 @@
                         </div>
                     </div>
 
-                    <!-- Order Items -->
                     <h3 class="font-semibold text-lg mb-4">Items Ordered</h3>
                     <div class="border rounded-lg overflow-hidden mb-8">
                         <table class="min-w-full divide-y divide-gray-200">
@@ -91,7 +87,6 @@
                         </table>
                     </div>
 
-                    <!-- Order Totals -->
                     <div class="flex justify-end mb-8">
                         <div class="w-full md:w-1/3">
                             <div class="flex justify-between py-2 border-b">
@@ -109,7 +104,6 @@
                         </div>
                     </div>
 
-                    <!-- Fulfillment Action -->
                     <div class="bg-blue-50 border border-blue-100 rounded-lg p-6">
                         <h3 class="font-semibold text-lg mb-4 text-blue-900">Order Fulfillment</h3>
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">

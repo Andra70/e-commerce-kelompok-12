@@ -11,7 +11,6 @@ class SellerController extends Controller
 {
     public function dashboard()
     {
-        // Check if user has store
         $user = auth()->user();
         if (!$user->store) {
             return redirect()->route('seller.register');
@@ -38,7 +37,6 @@ class SellerController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'about' => 'required|string',
-            // other validation...
         ]);
 
         $user = auth()->user();
@@ -46,13 +44,13 @@ class SellerController extends Controller
         Store::create([
             'user_id' => $user->id,
             'name' => $request->name,
-            'logo' => 'default_logo.png', // Default or upload
+            'logo' => 'default_logo.png',
             'about' => $request->about,
-            'phone' => '000000000', // Placeholder or add field
+            'phone' => '000000000',
             'address_id' => '0',
             'city' => $request->city,
-            'address' => 'Default Address', // Placeholder
-            'postal_code' => '00000', // Placeholder
+            'address' => 'Default Address',
+            'postal_code' => '00000',
             'is_verified' => false,
         ]);
 
@@ -61,7 +59,7 @@ class SellerController extends Controller
 
     public function products()
     {
-        return view('seller.products.index'); // Need to create index view? maybe later.
+        return view('seller.products.index');
     }
 
     public function createProduct()
@@ -91,19 +89,10 @@ class SellerController extends Controller
             'description' => $request->description,
             'condition' => $request->condition,
             'price' => $request->price,
-            'weight' => 1000, // Default for now
+            'weight' => 1000,
             'stock' => $request->stock,
         ]);
 
-        // Handle Image Upload (simplified, assuming single image or placeholder for now if no file)
-        // If file exists:
-        // $path = $request->file('image')->store('products', 'public');
-        // ProductImage::create(['product_id' => $product->id, 'image' => $path, 'is_thumbnail' => true]);
-        
-        // Using placeholder for speed as file upload requires multipart form setup correctly which we have, 
-        // but let's stick to safe text first or try-catch. 
-        // We really should implement image upload though.
-        
         if ($request->hasFile('image')) {
             $path = $request->file('image')->store('products', 'public');
              \App\Models\ProductImage::create([
@@ -112,7 +101,6 @@ class SellerController extends Controller
                 'is_thumbnail' => true,
             ]);
         } else {
-             // Fallback if required not caught (frontend validation bypass)
              \App\Models\ProductImage::create([
                 'product_id' => $product->id,
                 'image' => 'products/default.jpg',
@@ -157,9 +145,7 @@ class SellerController extends Controller
         ]);
 
         if ($request->hasFile('image')) {
-            // Delete old images? For now, let's just add new one or replace.
-            // Simplified: Delete all old logic or just add new as thumbnail
-            $product->productImages()->delete(); // Remove old
+            $product->productImages()->delete();
             
             $path = $request->file('image')->store('products', 'public');
              \App\Models\ProductImage::create([
@@ -189,26 +175,15 @@ class SellerController extends Controller
 
     public function updateOrder(\App\Models\Transaction $transaction, Request $request)
     {
-        // Add authorization check
         if ($transaction->store_id !== auth()->user()->store->id) {
             abort(403);
         }
         
-        // Check if order is already completed
         if ($transaction->delivery_status === 'received') {
             return redirect()->back()->with('error', 'Order already completed. Cannot update tracking number.');
         }
 
         if ($request->status) {
-             // Assuming shipping_type or tracking_number is used for status tracking
-             // But the transaction table has 'payment_status'. 
-             // We probably need a 'shipping_status' or similar. 
-             // existing migration: 'payment_status' and 'tracking_number'.
-             // Let's use tracking_number as "Shipped" indicator or add status if migration allows?
-             // Migration 2025_11_14_184432_create_transactions_table.php has:
-             // code, buyer, store, address..., shipping, shipping_type, shipping_cost, tracking_number, tax, grand_total, payment_status
-             // It lacks "order_status" (pending, processing, shipped, completed).
-             // We will assume "tracking_number" presence => shipped.
         }
         
         $request->validate([

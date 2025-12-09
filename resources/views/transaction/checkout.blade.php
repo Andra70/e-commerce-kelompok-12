@@ -9,7 +9,6 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 flex flex-col md:flex-row gap-8">
-                    <!-- Product Info -->
                     <div class="w-full md:w-1/3 order-md-2">
                         <div class="bg-gray-50 p-4 rounded-lg border">
                             <h3 class="font-semibold mb-3">Order Summary</h3>
@@ -37,19 +36,16 @@
                         </div>
                     </div>
 
-                    <!-- Shipping Form -->
                     <div class="w-full md:w-2/3 order-md-1">
                         <h3 class="font-semibold text-lg mb-4">Shipping Details</h3>
                         <form method="POST" action="{{ route('checkout.store', $product->slug) }}">
                             @csrf
                             
-                            <!-- Address -->
                             <div class="mb-4">
                                 <x-input-label for="address" :value="__('Address')" />
                                 <textarea id="address" name="address" class="block mt-1 w-full border-gray-300 rounded-md shadow-sm" rows="3" required></textarea>
                             </div>
 
-                            <!-- City -->
                             <div class="grid grid-cols-2 gap-4 mb-4">
                                 <div>
                                     <x-input-label for="city" :value="__('City')" />
@@ -61,7 +57,6 @@
                                 </div>
                             </div>
 
-                            <!-- Shipping Service -->
                             <div class="mb-4">
                                 <x-input-label for="shipping" :value="__('Shipping Service')" />
                                 <select id="shipping" name="shipping" class="block mt-1 w-full border-gray-300 rounded-md shadow-sm">
@@ -77,7 +72,6 @@
                                 const shippingDisplay = document.getElementById('shipping-cost-display');
                                 const totalDisplay = document.getElementById('total-display');
                                 const productPrice = {{ $product->price }};
-                                // const taxRate = 0.11; // Tax removed
 
                                 function formatRupiah(number) {
                                     return 'Rp ' + new Intl.NumberFormat('id-ID', { minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(number);
@@ -87,7 +81,6 @@
                                     const selectedOption = shippingSelect.options[shippingSelect.selectedIndex];
                                     const shippingCost = parseInt(selectedOption.dataset.cost || 0);
                                     
-                                    // const tax = productPrice * taxRate;
                                     const total = productPrice + shippingCost;
 
                                     if(shippingDisplay) shippingDisplay.textContent = formatRupiah(shippingCost);
@@ -96,7 +89,6 @@
 
                                 shippingSelect.addEventListener('change', calculateTotal);
                                 
-                                // Initial calculation
                                 calculateTotal();
                             });
                         </script>
