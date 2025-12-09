@@ -1,0 +1,88 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Models\Product;
+use App\Models\Transaction;
+use Illuminate\Support\Facades\Auth;
+
+class TransactionController extends Controller
+{
+    public function store(Request $request, Product $product)
+    {
+        $request->validate([
+            'address' => 'required|string',
+            'city' => 'required|string',
+            'postal_code' => 'required|string',
+            'shipping' => 'required|string',
+        ]);
+
+        $user = Auth::user();
+        
+        // Calculate costs (Simplified)
+        $shippingCost = 15000; // Example static cost parsing from select can be complex, simplifying for now.
+        if (str_contains($request->shipping, '14.000')) $shippingCost = 14000;
+        if (str_contains($request->shipping, '13.000')) $shippingCost = 13000;
+        
+        // $tax = $product->price * 0.11; // Tax removed
+        $grandTotal = $product->price + $shippingCost;
+
+        // Ensure buyer exists
+        $buyer = $user->buyer;
+        if (!$buyer) {
+            $buyer = \App\Models\Buyer::create(['user_id' => $user->id]);
+        }
+
+        $transaction = Transaction::create([
+            'buyer_id' => $buyer->id,
+            'store_id' => $product->store_id,
+            'code' => 'TRX-' . mt_rand(10000, 99999), 
+            'address' => $request->address,
+            'address_id' => '0', // Fallback
+            'city' => $request->city,
+            'postal_code' => $request->postal_code,
+            'shipping' => $request->shipping,
+            'shipping_type' => 'REG', // Default
+            'shipping_cost' => $shippingCost,
+            'tracking_number' => null,
+            'tax' => 0, // Set to 0 or remove column if possible, but keeping 0 for schema safety
+            'grand_total' => $grandTotal,
+            'payment_status' => 'paid',
+        ]);
+
+        \App\Models\TransactionDetail::create([
+            'transaction_id' => $transaction->id,
+            'product_id' => $product->id,
+            'qty' => 1,
+            'subtotal' => $product->price
+        ]);
+
+        // Decrement Stock
+        $product->decrement('stock', 1);
+
+        return redirect()->route('orders.history')->with('success', 'Order placed successfully!');
+    }
+
+    public function complete(\App\Models\Transaction $transaction)
+    {
+        // Ensure the authenticated user is the buyer of this transaction
+        // Assumption: User has one buyer profile, or check user_id through buyer
+        if ($transaction->buyer->user_id !== auth()->id()) {
+            abort(403);
+        }
+
+        if ($transaction->delivery_status !== 'received') {
+             $transaction->update(['delivery_status' => 'received']);
+             
+             // Release funds to seller
+             $storeBalance = \App\Models\StoreBalance::firstOrCreate(
+                ['store_id' => $transaction->store_id],
+                ['balance' => 0]
+            );
+            $storeBalance->increment('balance', $transaction->grand_total);
+        }
+
+        return redirect()->back()->with('success', 'Order received and funds released to seller.');
+    }
+}

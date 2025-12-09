@@ -12,9 +12,29 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('home')" :active="request()->routeIs('home')">
+                        {{ __('Home') }}
+                    </x-nav-link>
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                    
+                    @if(Auth::user()->isAdmin())
+                        <x-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.dashboard')">
+                            {{ __('Admin Panel') }}
+                        </x-nav-link>
+                    @endif
+
+                    @if(Auth::user()->isSeller())
+                        <x-nav-link :href="route('seller.dashboard')" :active="request()->routeIs('seller.dashboard')">
+                            {{ __('Seller Dashboard') }}
+                        </x-nav-link>
+                    @else
+                        <!-- Option to become a seller if not one -->
+                        <x-nav-link :href="route('seller.register')" :active="request()->routeIs('seller.register')">
+                            {{ __('Open Store') }}
+                        </x-nav-link>
+                    @endif
                 </div>
             </div>
 
@@ -34,6 +54,26 @@
                     </x-slot>
 
                     <x-slot name="content">
+                        @if(Auth::user()->isSeller())
+                             <x-dropdown-link :href="route('seller.orders.index')">
+                                {{ __('Manage Orders') }}
+                            </x-dropdown-link>
+                             <x-dropdown-link :href="route('seller.products.index')">
+                                {{ __('My Products') }}
+                            </x-dropdown-link>
+                             <x-dropdown-link :href="route('seller.balance.index')">
+                                {{ __('Store Balance') }}
+                            </x-dropdown-link>
+                        @endif
+                        
+                        <x-dropdown-link :href="route('orders.history')">
+                            {{ __('My Purchases') }}
+                        </x-dropdown-link>
+
+                        <x-dropdown-link :href="route('cart.index')">
+                            {{ __('Shopping Cart') }}
+                        </x-dropdown-link>
+
                         <x-dropdown-link :href="route('profile.edit')">
                             {{ __('Profile') }}
                         </x-dropdown-link>
@@ -67,6 +107,9 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
+            <x-responsive-nav-link :href="route('home')" :active="request()->routeIs('home')">
+                {{ __('Home') }}
+            </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
