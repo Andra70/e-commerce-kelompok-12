@@ -25,7 +25,7 @@
             @endif
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <!-- Balance & Withdraw -->
+
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 text-gray-900">
                         <h3 class="text-lg font-semibold mb-4">Current Balance</h3>
@@ -45,7 +45,7 @@
                     </div>
                 </div>
 
-                <!-- Bank Details -->
+
                 <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <div class="p-6 text-gray-900">
                         <h3 class="text-lg font-semibold mb-4">Bank Details</h3>
@@ -72,7 +72,7 @@
                 </div>
             </div>
 
-            <!-- Withdrawal History -->
+
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg mt-6">
                 <div class="p-6 text-gray-900">
                     <h3 class="text-lg font-semibold mb-4">Withdrawal History</h3>

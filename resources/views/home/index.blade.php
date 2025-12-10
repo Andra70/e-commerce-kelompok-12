@@ -1,7 +1,5 @@
 <x-public-layout>
-    <!-- Main Content -->
-    <!-- Main Content -->
-    <!-- Categories Full Width Bar -->
+
     <div class="bg-black text-white w-full border-b-4 border-black mb-8">
         <div class="max-w-7xl mx-auto">
             <div class="flex items-center justify-center overflow-x-auto">
@@ -21,7 +19,7 @@
 
     <div class="max-w-7xl mx-auto pb-12 px-4 sm:px-6 lg:px-8">
 
-        <!-- Products Grid -->
+
         <div>
             <div class="flex items-center space-x-4 mb-6">
                 <h2 class="text-2xl font-bold">Products</h2>
@@ -51,7 +49,7 @@
                 @foreach($products as $product)
                     <div class="bg-white overflow-hidden shadow-sm rounded-lg transition duration-300 hover:shadow-2xl hover:bg-[#ff9900] hover:-translate-y-2 hover:scale-105 group">
                         <a href="{{ route('product.detail', $product->slug) }}">
-                            <!-- Placeholder Image -->
+
                             <div class="h-48 bg-gray-200 w-full flex items-center justify-center overflow-hidden">
                                 @if($product->productImages->count() > 0)
                                     <img src="{{ asset('storage/' . $product->productImages->first()->image) }}" alt="{{ $product->name }}" class="w-full h-full object-cover">

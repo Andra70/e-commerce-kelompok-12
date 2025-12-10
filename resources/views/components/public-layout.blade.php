@@ -11,12 +11,12 @@
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
-        <!-- Scripts -->
+
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="font-sans antialiased bg-gray-100">
         <div class="min-h-screen">
-            <!-- Navigation -->
+
             @if (Route::has('login'))
                 <nav class="bg-black border-b border-gray-900">
                     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -29,7 +29,7 @@
                                 </div>
                             </div>
                             
-                            <!-- Search Bar -->
+
                             <div class="flex-1 flex justify-center items-center px-6 lg:px-12">
                                 <form action="{{ route('home') }}" method="GET" class="w-full max-w-lg">
                                     <div class="relative">
@@ -43,10 +43,10 @@
                                 </form>
                             </div>
 
-                            <!-- Right Side of Header -->
+
                              <div class="flex items-center space-x-4">
                                 @auth
-                                    <!-- Cart Icon -->
+
                                     <a href="{{ route('cart.index') }}" class="text-gray-300 hover:text-white relative">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                             <path stroke-linecap="round" stroke-linejoin="round" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
@@ -58,7 +58,7 @@
                                         @endif
                                     </a>
 
-                                    <!-- Profile Dropdown -->
+
                                     <div class="hidden sm:flex sm:items-center sm:ms-6">
                                         <x-dropdown align="right" width="48">
                                             <x-slot name="trigger">
@@ -107,7 +107,7 @@
                                                     {{ __('Profile') }}
                                                 </x-dropdown-link>
 
-                                                <!-- Authentication -->
+
                                                 <form method="POST" action="{{ route('logout') }}">
                                                     @csrf
                                                     <x-dropdown-link :href="route('logout')"
@@ -131,7 +131,7 @@
                 </nav>
             @endif
 
-            <!-- Main Content -->
+
             <main>
                 {{ $slot }}
             </main>

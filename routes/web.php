@@ -50,6 +50,7 @@ Route::middleware(['auth', 'role:seller', 'store.active'])->prefix('seller')->na
     Route::post('/products', [SellerController::class, 'storeProduct'])->name('products.store');
     Route::get('/products/{product}/edit', [SellerController::class, 'editProduct'])->name('products.edit');
     Route::patch('/products/{product}', [SellerController::class, 'updateProduct'])->name('products.update');
+    Route::delete('/products/{product}', [SellerController::class, 'destroyProduct'])->name('products.destroy');
     
     Route::get('/orders', [SellerController::class, 'orders'])->name('orders.index');
     Route::get('/orders/{transaction}', [SellerController::class, 'showOrder'])->name('orders.show');

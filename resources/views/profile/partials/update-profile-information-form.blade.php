@@ -17,7 +17,7 @@
         @csrf
         @method('patch')
 
-        <!-- Left: Avatar -->
+
         <div class="w-full md:w-1/3 flex flex-col items-center">
             <div class="w-48 h-48 bg-gray-100 rounded-lg overflow-hidden border border-gray-200 mb-4 flex items-center justify-center">
                 @if ($user->avatar)
@@ -38,10 +38,10 @@
             <x-input-error class="mt-2" :messages="$errors->get('avatar')" />
         </div>
 
-        <!-- Right: Fields -->
+
         <div class="w-full md:w-2/3 space-y-6">
             
-            <!-- Ubah Biodata Diri -->
+
             <div>
                 <h3 class="font-bold text-gray-900 mb-4">Ubah Biodata Diri</h3>
                 <div class="space-y-4">
@@ -55,7 +55,7 @@
                 </div>
             </div>
 
-            <!-- Ubah Kontak -->
+
             <div class="pt-6 border-t">
                 <h3 class="font-bold text-gray-900 mb-4">Ubah Kontak</h3>
                 <div class="space-y-4">
@@ -76,7 +76,7 @@
                 </div>
             </div>
 
-            <!-- Save Action -->
+
             <div class="pt-6 flex justify-end">
                 <x-primary-button class="w-full md:w-auto px-8">{{ __('Save') }}</x-primary-button>
                 @if (session('status') === 'profile-updated')

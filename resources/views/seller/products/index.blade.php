@@ -29,7 +29,11 @@
                                     <p class="text-sm text-gray-500">Stock: {{ $product->stock }}</p>
                                     <div class="mt-4 flex gap-2">
                                         <a href="{{ route('seller.products.edit', $product->id) }}" class="text-sm text-blue-500 hover:underline">Edit</a>
-                                        <a href="#" class="text-sm text-red-500 hover:underline">Delete</a>
+                                        <form action="{{ route('seller.products.destroy', $product->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this product?');" class="inline">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="text-sm text-red-500 hover:underline">Delete</button>
+                                        </form>
                                     </div>
                                 </div>
                             @endforeach

@@ -126,7 +126,7 @@
                 .catch(error => console.error('Error:', error));
             }
 
-            // Handle Manual Input Change
+
             document.querySelectorAll('.quantity-input').forEach(input => {
                 input.addEventListener('change', function() {
                     const cartId = this.dataset.id;
@@ -140,7 +140,7 @@
                 });
             });
 
-            // Handle Increment
+
             document.querySelectorAll('.btn-increment').forEach(btn => {
                 btn.addEventListener('click', function() {
                     const cartId = this.dataset.id;
@@ -152,7 +152,7 @@
                 });
             });
 
-            // Handle Decrement
+
             document.querySelectorAll('.btn-decrement').forEach(btn => {
                 btn.addEventListener('click', function() {
                     const cartId = this.dataset.id;

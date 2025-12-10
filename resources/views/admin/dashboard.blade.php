@@ -10,7 +10,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     <h3 class="text-lg font-semibold mb-4">Pending Store Verifications</h3>
-                    <!-- Table for verification -->
+
                     @if($pendingStores->isEmpty())
                         <div class="mt-4 p-4 border rounded bg-gray-50 text-center text-gray-500">
                             No pending verifications.
@@ -51,7 +51,7 @@
                 </div>
             </div>
 
-            <!-- Pending Withdrawals -->
+
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg mt-6">
                 <div class="p-6 text-gray-900">
                     <h3 class="text-lg font-semibold mb-4">Pending Withdrawals</h3>
@@ -107,7 +107,7 @@
                 </div>
             </div>
 
-            <!-- Users Management -->
+
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg mt-6">
                 <div class="p-6 text-gray-900">
                     <h3 class="text-lg font-semibold mb-4">All Users</h3>
@@ -155,7 +155,7 @@
                 </div>
             </div>
 
-            <!-- Stores Management -->
+
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg mt-6">
                 <div class="p-6 text-gray-900">
                     <h3 class="text-lg font-semibold mb-4">All Stores</h3>

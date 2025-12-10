@@ -49,9 +49,9 @@ class HomeController extends Controller
 
     public function history()
     {
-        // Assuming relationship buyer -> user exists or we check by user_id if we fetch buyer first
+
         $user = auth()->user();
-        // Check if user is a buyer, if not maybe empty
+
         $buyer = $user->buyer; 
         
         $transactions = collect();

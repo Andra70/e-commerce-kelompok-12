@@ -8,9 +8,9 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 flex flex-col md:flex-row gap-6">
             
-            <!-- Left Sidebar -->
+
             <div class="w-full md:w-1/4 space-y-6">
-                <!-- User Card -->
+
                 <div class="bg-white p-4 rounded-lg shadow border border-gray-100 flex items-center gap-4">
                     <div class="w-12 h-12 bg-gray-200 rounded-full overflow-hidden flex-shrink-0">
                         @if(Auth::user()->avatar)
@@ -34,7 +34,7 @@
                     </div>
                 </div>
 
-                <!-- Menu -->
+
                 <div class="bg-white rounded-lg shadow border border-gray-100 overflow-hidden">
                     <nav class="flex flex-col">
                         <a href="#" class="px-4 py-3 bg-gray-50 text-indigo-600 font-bold border-l-4 border-indigo-600 text-sm">Biodata Diri</a>
@@ -49,9 +49,9 @@
                 </div>
             </div>
 
-            <!-- Main Content -->
+
             <div class="w-full md:w-3/4 space-y-6">
-                <!-- Biodata Card -->
+
                 <div class="bg-white shadow rounded-lg border border-gray-200 overflow-hidden">
                     <div class="border-b px-6 py-4">
                         <h2 class="text-lg font-bold text-gray-900">Biodata Diri</h2>
@@ -61,7 +61,7 @@
                     </div>
                 </div>
 
-                <!-- Password & Danger Zone -->
+
                 <div class="bg-white shadow rounded-lg border border-gray-200 overflow-hidden">
                     <div class="border-b px-6 py-4">
                         <h2 class="text-lg font-bold text-gray-900">Keamanan</h2>

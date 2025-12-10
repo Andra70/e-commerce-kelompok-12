@@ -15,7 +15,7 @@ class Product extends Model
         'description',
         'condition',
         'price',
-        'weight',
+
         'stock',
     ];
 

@@ -13,13 +13,13 @@
                     <div class="p-6 text-gray-900">
                         <h3 class="font-semibold text-lg mb-4">Shipping Information (One address for all orders)</h3>
                         
-                         <!-- Address -->
+
                          <div class="mb-4">
                             <x-input-label for="address" :value="__('Address')" />
                             <textarea id="address" name="address" class="block mt-1 w-full border-gray-300 rounded-md shadow-sm" rows="3" required></textarea>
                         </div>
 
-                        <!-- City -->
+
                         <div class="grid grid-cols-2 gap-4 mb-4">
                             <div>
                                 <x-input-label for="city" :value="__('City')" />
@@ -66,7 +66,7 @@
                                             <span class="text-sm font-semibold">Rp {{ number_format($item->product->price * $item->quantity, 0, ',', '.') }}</span>
                                         </div>
                                     @endforeach
-                                    <!-- Hidden input for shipping per store -->
+
                                     <input type="hidden" name="shipping[{{ $storeId }}]" class="store-shipping-input" value="JNE (Rp 15.000)">
                                 </div>
                             @endforeach

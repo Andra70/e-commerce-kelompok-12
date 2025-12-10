@@ -89,7 +89,7 @@ class SellerController extends Controller
             'description' => $request->description,
             'condition' => $request->condition,
             'price' => $request->price,
-            'weight' => 1000,
+
             'stock' => $request->stock,
         ]);
 
@@ -198,5 +198,23 @@ class SellerController extends Controller
         }
 
         return redirect()->back()->with('success', 'Order updated');
+    }
+    public function destroyProduct(\App\Models\Product $product)
+    {
+        if ($product->store_id !== auth()->user()->store->id) {
+            abort(403);
+        }
+
+        // Delete product images
+        foreach ($product->productImages as $image) {
+            if (\Illuminate\Support\Facades\Storage::disk('public')->exists($image->image)) {
+                \Illuminate\Support\Facades\Storage::disk('public')->delete($image->image);
+            }
+            $image->delete();
+        }
+
+        $product->delete();
+
+        return redirect()->route('seller.products.index')->with('success', 'Product deleted successfully');
     }
 }

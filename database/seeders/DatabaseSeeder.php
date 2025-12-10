@@ -13,12 +13,10 @@ use Illuminate\Support\Str;
 
 class DatabaseSeeder extends Seeder
 {
-    /**
-     * Seed the application's database.
-     */
+
     public function run(): void
     {
-        // 1. Create Admin
+
         User::factory()->create([
             'name' => 'Admin User',
             'email' => 'admin@example.com',
@@ -26,7 +24,7 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('password'),
         ]);
 
-        // 2. Create Categories (Phone Brands)
+
         $categories = ['Samsung', 'iPhone', 'Xiaomi', 'Oppo', 'Vivo', 'Realme', 'Infinix', 'Google Pixel'];
         foreach ($categories as $cat) {
             ProductCategory::create([
@@ -36,11 +34,11 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
-        // 3. Create Sellers and Stores
+
         $seller = User::factory()->create([
             'name' => 'Seller One',
             'email' => 'seller@example.com',
-            'role' => 'member', // Sellers are members with a store
+            'role' => 'member',
             'password' => Hash::make('password'),
         ]);
 
@@ -57,7 +55,7 @@ class DatabaseSeeder extends Seeder
             'is_verified' => true,
         ]);
 
-        // 4. Create Products for the Store
+
         $catSamsung = ProductCategory::where('slug', 'samsung')->first();
         
         $product1 = Product::create([
@@ -68,17 +66,17 @@ class DatabaseSeeder extends Seeder
             'description' => 'The ultimate Galaxy smartphone with AI features, titanium frame, and S-Pen.',
             'condition' => 'new',
             'price' => 21999000,
-            'weight' => 232,
+
             'stock' => 50,
         ]);
         
         ProductImage::create([
             'product_id' => $product1->id,
-            'image' => 'products/dummy-s24.jpg', // Placeholder, user might need to upload real later or we use default
+            'image' => 'products/dummy-s24.jpg',
             'is_thumbnail' => true,
         ]);
 
-        // 5. Create Buyer
+
         User::factory()->create([
             'name' => 'Buyer Doe',
             'email' => 'buyer@example.com',

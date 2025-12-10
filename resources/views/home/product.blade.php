@@ -3,7 +3,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 flex flex-col md:flex-row gap-8">
-                    <!-- Product Image -->
+
                     <div class="w-full md:w-1/2">
                         <div class="aspect-square bg-gray-200 rounded-lg flex items-center justify-center overflow-hidden">
                             @if($product->productImages->count() > 0)
@@ -14,7 +14,7 @@
                         </div>
                     </div>
                     
-                    <!-- Product Details -->
+
                     <div class="w-full md:w-1/2">
                         <div class="flex justify-between items-start mb-2">
                             <h1 class="text-3xl font-bold">{{ $product->name }}</h1>
@@ -36,7 +36,7 @@
                                 Condition: <span class="font-medium text-gray-700 capitalize">{{ $product->condition }}</span>
                             </div>
                             <div class="text-sm text-gray-500">
-                                Weight: <span class="font-medium text-gray-700">{{ $product->weight }}g</span>
+
                             </div>
                         </div>
 
@@ -56,7 +56,7 @@
                             </div>
                         </div>
 
-                        <!-- Actions -->
+
                         <div class="flex gap-4">
                             <a href="{{ route('checkout', $product->slug) }}" class="bg-black text-white px-6 py-3 rounded-lg font-semibold w-full transition duration-200 text-center hover:bg-[#ff9900] hover:text-black">
                                 Buy Now
@@ -71,7 +71,7 @@
                     </div>
                 </div>
 
-                <!-- Reviews Section -->
+
                 <div class="p-6 mt-8 border-t pt-8 bg-gray-50">
                     <h2 class="text-2xl font-bold mb-6">Customer Reviews ({{ $product->review_count }})</h2>
                     
