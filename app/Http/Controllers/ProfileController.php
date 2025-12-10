@@ -11,9 +11,6 @@ use Illuminate\View\View;
 
 class ProfileController extends Controller
 {
-    /**
-     * Display the user's profile form.
-     */
     public function edit(Request $request): View
     {
         return view('profile.edit', [
@@ -21,18 +18,13 @@ class ProfileController extends Controller
         ]);
     }
 
-    /**
-     * Update the user's profile information.
-     */
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
         $data = $request->validated();
         $user = $request->user();
 
         if ($request->hasFile('avatar')) {
-             // Delete old avatar if exists? for now just overwrite logic handled by storage link or new path
             if ($user->avatar) {
-                // \Illuminate\Support\Facades\Storage::disk('public')->delete($user->avatar); // Optional cleanup
             }
             $path = $request->file('avatar')->store('avatars', 'public');
             $data['avatar'] = $path;
@@ -49,9 +41,6 @@ class ProfileController extends Controller
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }
 
-    /**
-     * Delete the user's account.
-     */
     public function destroy(Request $request): RedirectResponse
     {
         $request->validateWithBag('userDeletion', [
